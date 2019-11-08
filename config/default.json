@@ -1,0 +1,3 @@
+{
+	"mongoURI": "mongodb+srv://caspian:Musicman89@cluster0-codep.mongodb.net/test?retryWrites=true&w=majority"
+}
