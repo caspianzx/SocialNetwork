@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+// const auth = require('../../')
 
 //@router GET api/auth  
 //@desc   TEST route
