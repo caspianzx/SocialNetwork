@@ -14,10 +14,7 @@ const gravatar = require('gravatar');
 const bcrypt = require('bcryptjs');
 //import jsonwebtoken
 const jwt = require('jsonwebtoken');
-
 const config = require('config');
-
-
 
 //@router POST api/users  
 //@desc   POST route
@@ -74,7 +71,6 @@ router.post('/', [
                 avatar,
                 password
             });
-
             //encrypting password
             const salt = await bcrypt.genSalt(10);
             user.password = await bcrypt.hash(password, salt);
@@ -95,16 +91,12 @@ router.post('/', [
                 res.json({
                     token
                 });
-
             })
-
-
         } catch (err) {
             console.error(err.message);
             res.status(500).send('Server Error');
         }
     });
-
 
 
 
