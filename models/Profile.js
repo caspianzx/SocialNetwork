@@ -47,8 +47,7 @@ const ProfileSchema = new mongoose.Schema({
             required: true
         },
         to: {
-            type: Date,
-            required: true
+            type: Date
         },
         current: {
             type: Boolean,
@@ -57,7 +56,7 @@ const ProfileSchema = new mongoose.Schema({
         description: {
             type: String,
             required: true
-        },
+        }
     }],
     education: [{
         school: {
@@ -87,7 +86,7 @@ const ProfileSchema = new mongoose.Schema({
         description: {
             type: String,
             required: true
-        },
+        }
     }],
     social: {
         youtube: {
