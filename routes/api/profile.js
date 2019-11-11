@@ -231,7 +231,6 @@ router.put('/experience', [auth, [
 
     // console.log(newExp)
     // console.log(req.user.id)
-
     try {
         //fetch profile
         const profile = await Profile.findOne({
@@ -250,5 +249,34 @@ router.put('/experience', [auth, [
     }
 });
 
+//@router DELETE api/profile/experience/:exp_id
+//@desc   DELETE experience from profile 
+//access  
+
+router.delete('/experience/:exp_id', auth, async (req, res) => {
+    try {
+        const profile = await Profile.findOne({
+            user: req.user.id
+        });
+
+        //Get remove index
+        const removeIndex = profile.experience.map(item => item.id).indexOf(req.params.exp_id);
+        // console.log(removeIndex);
+
+        //prevent removal of experience if it does not exist
+        if (removeIndex === -1) {
+            res.status(404).send('Experience not found');
+        } else {
+            profile.experience.splice(removeIndex, 1);
+            await profile.save();
+            res.json(profile);
+        }
+
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error');
+
+    }
+})
 
 module.exports = router;
