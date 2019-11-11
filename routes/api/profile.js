@@ -122,6 +122,55 @@ router.post('/', [auth,
     })
 
 
+//@router GET api/profile
+//@desc   Create all profiles
+//access  Public (no middleware auth)
+
+router.get('/', async (req, res) => {
+    try {
+        //populate from user collection is similar to sql join
+        const profiles = await Profile.find().populate('user', ['name', 'avatar']);
+        res.json(profiles);
+
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error');
+    }
+});
+
+
+//@router GET api/profile/user/:user_id
+//@desc   Create profile by user id
+//access  Public (no middleware auth)
+
+router.get('/user/:user_id', async (req, res) => {
+    try {
+        //populate from user collection is similar to sql join
+        const profile = await Profile.findOne({
+            user: req.params.user_id
+        }).populate('user', ['name', 'avatar']);
+
+
+        if (!profile) {
+            return res.status(400).json({
+                msg: 'Profile not found.'
+            });
+        }
+        res.json(profile);
+
+    } catch (err) {
+        console.error(err.message);
+        if (err.kind === 'ObjectId') {
+            return res.status(400).json({
+                msg: 'Profile not found.'
+            });
+        }
+        res.status(500).send('Server Error');
+    }
+});
+
+
+
 
 
 
