@@ -83,7 +83,7 @@ router.post('/', [auth,
             profileFields.skills = skills.split(',').map(skill => skill.trim());
         }
         console.log(profileFields.skills);
-        res.send('hello');
+        // res.send('hello');
 
         // Build social Object
         profileFields.social = {}
@@ -92,6 +92,7 @@ router.post('/', [auth,
         if (twitter) profileFields.social.twitter = twitter;
         if (instagram) profileFields.social.instagram = instagram;
         if (linkedin) profileFields.social.linkedin = linkedin;
+        console.log(profileFields.social.twitter)
 
         try {
             //user field is the object id
