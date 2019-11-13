@@ -1,6 +1,10 @@
 import React, { Fragment, useState } from "react";
+import { connect } from "react-redux";
+import { setAlert } from "../../actions/alert";
+import PropTypes from "prop-types";
 
-const Register = () => {
+//props will contain setAlert func
+const Register = ({ setAlert }) => {
   //using state hooks and array deconstructing
   //similar to this.formData and this.setState
   const [formData, setFormData] = useState({
@@ -20,7 +24,8 @@ const Register = () => {
   const onSubmit = async e => {
     e.preventDefault();
     if (password !== password2) {
-      console.log("Password do not match");
+      //dispatch setAlert func from action folder
+      setAlert("Password do not match", "danger");
     } else {
       console.log("Success");
     }
@@ -88,4 +93,11 @@ const Register = () => {
   );
 };
 
-export default Register;
+//declare what goes as props to register components
+Register.propTypes = {
+  setAlert: PropTypes.func.isRequired
+};
+
+//state will be first param of connect. 2nd param will be the props/action
+//connect is needed to connect to redux store and pass in params into Register
+export default connect(null, { setAlert })(Register);

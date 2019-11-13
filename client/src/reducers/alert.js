@@ -2,6 +2,8 @@ import { SET_ALERT, REMOVE_ALERT } from "../actions/types";
 const initialState = [];
 
 export default function(state = initialState, action) {
+  //type is a must
+  //payload can be any variable as long as it is set in action during dispatch
   const { type, payload } = action;
   switch (type) {
     case SET_ALERT:
