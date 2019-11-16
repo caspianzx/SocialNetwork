@@ -71,10 +71,10 @@ export const getGithubRepos = (username) => async (dispatch) => {
 	}
 };
 
-//Get profile by ID
-export const getProfileByID = (userID) => async (dispatch) => {
+//Get profile by Id
+export const getProfileById = (userID) => async (dispatch) => {
 	try {
-		const res = await axios.get(`/api/profile/${userID}`);
+		const res = await axios.get(`/api/profile/user/${userID}`);
 		dispatch({
 			type: GET_PROFILE,
 			payload: res.data
@@ -249,7 +249,7 @@ export const deleteEducation = (id) => async (dispatch) => {
 export const deleteAccount = () => async (dispatch) => {
 	if (window.confirm('Are you sure? This CANNOT be undone.')) {
 		try {
-			const res = await axios.delete(`/api/profile`);
+			await axios.delete(`/api/profile`);
 			dispatch({
 				type: CLEAR_PROFILE
 			});
