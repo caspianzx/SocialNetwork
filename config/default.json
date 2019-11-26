@@ -1,3 +1,6 @@
 {
-	"mongoURI": "mongodb+srv://caspian:Musicman89@cluster0-codep.mongodb.net/test?retryWrites=true&w=majority"
+	"mongoURI": "mongodb+srv://caspian:Musicman89@cluster0-codep.mongodb.net/test?retryWrites=true&w=majority",
+	"jwtSecret": "mysecrettoken",
+	"githubClientId": "091150474a58e17644a6",
+	"githubSecret": "23d535307d518f726bd2c1df07cc831fc683348e"
 }

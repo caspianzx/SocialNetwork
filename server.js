@@ -5,6 +5,11 @@ const app = express();
 //Connect to database
 connectDB();
 
+//Init middleware(body parser is now included in express)
+
+app.use(express.json({
+    extended: false
+}));
 
 
 app.get('./', (req, res) => res.send('APP is running'));
@@ -15,6 +20,6 @@ app.use('/api/auth', require('./routes/api/auth'));
 app.use('/api/profile', require('./routes/api/profile'));
 app.use('/api/posts', require('./routes/api/posts'));
 
-//Define PORT
+//Define PORT 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server started on ${PORT}`));
